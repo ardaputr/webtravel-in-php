@@ -21,11 +21,12 @@ if (!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
 	<main>
 		<section class="container wrapper">
 			<div class="page-header">
-				<h2 class="display-5">Welcome home <?php echo $_SESSION['username']; ?></h2>
+				<h2 class="display-5">Welcome : <?php echo $_SESSION['username']; ?></h2>
 			</div>
-
-			<a href="password_reset.php" class="btn btn-block btn-outline-warning">Reset Password</a>
-			<a href="logout.php" class="btn btn-block btn-outline-danger">Sign Out</a>
+			<center>
+				<a href="password_reset.php" class="btn btn-block btn-outline-warning">Reset Password</a>
+				<a href="logout.php" class="btn btn-block btn-outline-danger">Sign Out</a>
+			</center>
 		</section>
 	</main>
 
