@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-  header("location: welcome.php");
+  header("location: home.php");
   exit;
 }
 
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               $_SESSION['loggedin'] = true;
               $_SESSION['id'] = $id;
               $_SESSION['username'] = $username;
-              header('location: welcome.php');
+              header('location: home.php');
             } else {
               $password_err = 'Invalid password';
             }
