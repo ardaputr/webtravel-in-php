@@ -58,12 +58,17 @@ if (!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
 	</header>
 
 	<main>
-		<section class="container wrapper">
-			<div class="page-header">
-				<br>
-				<h2 class="display-5">Welcome</h2>
-			</div>
-		</section>
+	<section class="film">
+    <div class="film-container">
+      <div class="column-left">
+        <h1>Welcome to <span>Boole</span> </h1>
+        <p>Your ....</p>
+          <a href="quiz.html"><button type="button">Start Travelling</button></a>
+      </div>
+      <div class="column-right">
+        <img src="logoalala.jpg" class="film-image">
+      </div>
+    </div>
 	</main>
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
