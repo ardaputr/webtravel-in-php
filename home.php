@@ -81,14 +81,14 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
 											</li>
-											<li>
+											<li style="text-align: center;">
 												<a class="nav-link" href="logout.php">Sign Out</a>
 											</li>
 										';
 									} else {
 										// Jika belum login cuman tampil login ajahhh
 										echo '
-											<li>
+											<li style="text-align: center;">
 												<a class="nav-link" href="login.php">Login</a>
 											</li>
 										';
