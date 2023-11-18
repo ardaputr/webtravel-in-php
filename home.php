@@ -29,9 +29,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 			<nav>
 				<div>
 					<ul class="nav justify-content-center navbar">
-						<a class="navbar-brand me-auto" href="#" style="font-weight:600; color: #ffffff; font-size:30px;">Boole</a>
+						<a class="navbar-brand me-auto" style="font-weight:600; color: #ffffff; font-size:30px;">Boole</a>
 						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Home</a>
+							<a class="nav-link" href="home.php" style="color: #FFFFFF;" id="hover">Home</a>
 						</li>
 
 						<?php
