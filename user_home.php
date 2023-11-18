@@ -31,7 +31,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 					<ul class="nav justify-content-center navbar">
 						<a class="navbar-brand me-auto" style="font-weight:600; color: #ffffff; font-size:30px;">Boole</a>
 						<li class="nav-item">
-							<a class="nav-link" href="home.php" style="color: #FFFFFF;" id="hover">Home</a>
+							<a class="nav-link" href="user_home.php" style="color: #FFFFFF;" id="hover">Home</a>
 						</li>
 
 						<?php
@@ -39,13 +39,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 							//Jika belom login , jadi ga muncul dinavbar
 							echo '
 								<li class="nav-item">
-									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Add</a>
+									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">category</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Edit</a>
+									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Blog</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Delete</a>
+									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Abous Us</a>
 								</li>
 							';
 						}
@@ -63,7 +63,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 								if (isset($_SESSION['username'])) {
 									echo '<h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">Hai, ' . $_SESSION['username'] . '</h5>';
 								} else {
-									echo '<h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">Please login as admin</h5>';
+									echo '<h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">Please login</h5>';
 								}
 								?>
 

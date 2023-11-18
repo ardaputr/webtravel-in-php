@@ -1,11 +1,12 @@
 <?php
 require_once 'config/config.php';
 
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = $confirm_password = $role = "";
+$username_err = $password_err = $confirm_password_err = $role_err = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+	// Validate username
 	if (empty(trim($_POST['username']))) {
 		$username_err = "Please enter a username.";
 	} else {
@@ -22,11 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					$username = trim($_POST['username']);
 				}
 			} else {
-				echo "Oops! ${$username}, something went wrong. Please try again later.";
+				echo "Oops! Something went wrong. Please try again later.";
 			}
 			$stmt->close();
-		} else {
-			$mysql_db->close();
 		}
 	}
 
@@ -47,16 +46,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
 	}
 
-	if (empty($username_err) && empty($password_err) && empty($confirm_err)) {
+	if (empty($_POST['role'])) {
+		$role_err = "Please select a role.";
+	} else {
+		$role = $_POST['role'];
+	}
 
-		$sql = 'INSERT INTO users (username, password) VALUES (?,?)';
+	if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($role_err)) {
+
+		$sql = 'INSERT INTO users (username, password, role) VALUES (?,?,?)';
 
 		if ($stmt = $mysql_db->prepare($sql)) {
 
 			$param_username = $username;
 			$param_password = $password;
+			$param_role = $role;
 
-			$stmt->bind_param('ss', $param_username, $param_password);
+			$stmt->bind_param('sss', $param_username, $param_password, $param_role);
 
 			if ($stmt->execute()) {
 				header('location: ./login.php');
@@ -65,10 +71,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			}
 			$stmt->close();
 		}
-		$mysql_db->close();
 	}
+	$mysql_db->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -127,6 +134,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<input type="text" name="username" id="username" class="form-control" placeholder="Create Username" value="<?php echo $username ?>">
 					<span class="help-block"><?php echo $username_err; ?></span>
 				</div>
+
+				<div class="form-group">
+					<label for="role">Select Role:</label>
+					<select name="role" class="form-control">
+						<option value="" disabled selected>Please select role</option>
+						<?php
+						$userTypes = array("user", "admin");
+
+						foreach ($userTypes as $type) {
+							echo "<option value=\"$type\">$type</option>";
+						}
+						?>
+					</select>
+				</div>
+
 
 				<div class="form-group <?php (!empty($password_err)) ? 'has_error' : ''; ?>">
 					<label for="password">Password</label>

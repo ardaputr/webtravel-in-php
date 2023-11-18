@@ -2,7 +2,11 @@
 session_start();
 
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-  header("location: home.php");
+  if ($_SESSION['role'] === 'admin') {
+    header("location: admin_home.php");
+  } elseif ($_SESSION['role'] === 'user') {
+    header("location: user_home.php");
+  }
   exit;
 }
 
@@ -25,21 +29,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (empty($username_err) && empty($password_err)) {
-    $sql = 'SELECT id, username, password FROM users WHERE username = ?';
+    $sql = 'SELECT id, username, password, role FROM users WHERE username = ?';
     if ($stmt = $mysql_db->prepare($sql)) {
       $param_username = $username;
       $stmt->bind_param('s', $param_username);
       if ($stmt->execute()) {
         $stmt->store_result();
         if ($stmt->num_rows == 1) {
-          $stmt->bind_result($id, $username, $stored_password);
+          $stmt->bind_result($id, $username, $stored_password, $role);
           if ($stmt->fetch()) {
             if ($password == $stored_password) {
               session_start();
               $_SESSION['loggedin'] = true;
               $_SESSION['id'] = $id;
               $_SESSION['username'] = $username;
-              header('location: home.php');
+              $_SESSION['role'] = $role; // Store the role in the session
+
+              // Redirect to the appropriate home page based on role
+              if ($role === 'admin') {
+                header('location: admin_home.php');
+              } elseif ($role === 'user') {
+                header('location: user_home.php');
+              }
+              exit;
             } else {
               $password_err = 'Invalid password';
             }
@@ -56,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
