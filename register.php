@@ -1,7 +1,7 @@
 <?php
 require_once 'config/config.php';
-$username = $password = $confirm_password = "";
 
+$username = $password = $confirm_password = "";
 $username_err = $password_err = $confirm_password_err = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (empty(trim($_POST["password"]))) {
 		$password_err = "Please enter a password.";
 	} elseif (strlen(trim($_POST["password"])) < 6) {
-		$password_err = "Password must have atleast 6 characters.";
+		$password_err = "Password must have at least 6 characters.";
 	} else {
 		$password = trim($_POST["password"]);
 	}
@@ -54,13 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		if ($stmt = $mysql_db->prepare($sql)) {
 
 			$param_username = $username;
-			$param_password = password_hash($password, PASSWORD_DEFAULT);
+			$param_password = $password;
 
 			$stmt->bind_param('ss', $param_username, $param_password);
 
 			if ($stmt->execute()) {
 				header('location: ./login.php');
-				// echo "Will  redirect to login page";
 			} else {
 				echo "Something went wrong. Try signing in again.";
 			}
@@ -70,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

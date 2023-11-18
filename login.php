@@ -32,9 +32,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       if ($stmt->execute()) {
         $stmt->store_result();
         if ($stmt->num_rows == 1) {
-          $stmt->bind_result($id, $username, $hashed_password);
+          $stmt->bind_result($id, $username, $stored_password);
           if ($stmt->fetch()) {
-            if (password_verify($password, $hashed_password)) {
+            if ($password == $stored_password) {
               session_start();
               $_SESSION['loggedin'] = true;
               $_SESSION['id'] = $id;
@@ -45,17 +45,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
           }
         } else {
-          $username_err = "Username does not exists.";
+          $username_err = "Username does not exist.";
         }
       } else {
-        echo "Oops! Something went wrong please try again";
+        echo "Oops! Something went wrong, please try again.";
       }
       $stmt->close();
     }
     $mysql_db->close();
   }
 }
-
 ?>
 
 <!DOCTYPE html>
