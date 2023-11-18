@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
-	header('location: login.php');
-	exit;
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
+	// header('location: login.php');
+	// exit;
 }
 
 ?>
@@ -28,17 +28,26 @@ if (!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
 					<ul class="nav justify-content-center navbar">
 						<a class="navbar-brand me-auto" href="#" style="font-weight:600; color: #ffffff; font-size:30px;">Boole</a>
 						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFF;" id="hover">Home</a>
+							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Home</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Add</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Edit</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Delete</a>
-						</li>
+
+						<?php
+						if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+							//Jika belom login , jadi ga muncul dinavbar
+							echo '
+								<li class="nav-item">
+									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Add</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Edit</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Delete</a>
+								</li>
+							';
+						}
+						?>
+
 						<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar" aria-label="Toggle navigation">
 							<span>
 								<iconify-icon icon="iconamoon:profile-circle-fill" style="color: white;" width="40" height="40"></iconify-icon>
@@ -46,7 +55,15 @@ if (!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
 						</button>
 						<div class="offcanvas offcanvas-end text-bg-light" tabindex="-1" id="offcanvasLightNavbar" aria-labelledby="offcanvasLightNavbarLabel">
 							<div class="offcanvas-header">
-								<h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">Hai, <?php echo $_SESSION['username']; ?></h5>
+
+								<?php
+								if (isset($_SESSION['username'])) {
+									echo '<h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">Hai, ' . $_SESSION['username'] . '</h5>';
+								} else {
+									echo '<h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">Please login as admin</h5>';
+								}
+								?>
+
 								<button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
 							</div>
 							<div class="offcanvas-body">
@@ -54,12 +71,27 @@ if (!isset($_SESSION['loggedin']) && $_SESSION['loggedin'] !== false) {
 									<li class="nav-item">
 										<a class="nav-link active" aria-current="page" href="home.php">Home</a>
 									</li>
-									<li>
-										<a class="nav-link" href="password_reset.php">Reset Password</a>
-									</li>
-									<li>
-										<a class="nav-link" href="logout.php">Sign Out</a>
-									</li>
+									<?php
+									if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+										// Jika udah login maka nampil reset sama sign out
+										echo '
+											<li>
+												<a class="nav-link" href="password_reset.php">Reset Password</a>
+											</li>
+											<li>
+												<a class="nav-link" href="logout.php">Sign Out</a>
+											</li>
+										';
+									} else {
+										// Jika belum login cuman tampil login ajahhh
+										echo '
+											<li>
+												<a class="nav-link" href="login.php">Login</a>
+											</li>
+										';
+									}
+									?>
+
 								</ul>
 							</div>
 						</div>
