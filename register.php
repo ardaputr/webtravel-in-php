@@ -5,8 +5,6 @@ $username = $password = $confirm_password = $role = "";
 $username_err = $password_err = $confirm_password_err = $role_err = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-	// Validate username
 	if (empty(trim($_POST['username']))) {
 		$username_err = "Please enter a username.";
 	} else {

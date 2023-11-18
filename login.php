@@ -43,9 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               $_SESSION['loggedin'] = true;
               $_SESSION['id'] = $id;
               $_SESSION['username'] = $username;
-              $_SESSION['role'] = $role; // Store the role in the session
+              $_SESSION['role'] = $role;
 
-              // Redirect to the appropriate home page based on role
               if ($role === 'admin') {
                 header('location: admin_home.php');
               } elseif ($role === 'user') {
