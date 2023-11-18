@@ -57,39 +57,81 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign in</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/login.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: seagreen;
+      background: url(image/bg1.jpg) no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .wrapper {
+      width: 420px;
+      color: #ffff;
+      padding: 30px 40px;
+      border: 1px solid;
+      border-radius: 20px;
+      backdrop-filter: blur(2px);
+    }
+
+    .wrapper h2 {
+      font-size: 36px;
+      text-align: center;
+    }
+
+    .form-group {
+      padding: 5px;
+    }
+  </style>
+
 </head>
 
 <body>
   <main>
-    <section class="container wrapper">
-      <h2 class="display-4 pt-3">Login</h2>
-
+    <section class="wrapper">
+      <h2>Login</h2>
       <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
         <div class="form-group <?php (!empty($username_err)) ? 'has_error' : ''; ?>">
           <label for="username">Username</label>
-          <input type="text" name="username" id="username" class="form-control" value="<?php echo $username ?>">
+          <i class='bx bxs-user'></i>
+          <input type="text" name="username" id="username" class="form-control" placeholder="Input Username">
           <span class="help-block"><?php echo $username_err; ?></span>
         </div>
 
         <div class="form-group <?php (!empty($password_err)) ? 'has_error' : ''; ?>">
           <label for="password">Password</label>
-          <input type="password" name="password" id="password" class="form-control" value="<?php echo $password ?>">
+          <i class='bx bxs-key'></i>
+          <input type="password" name="password" id="password" class="form-control" placeholder="Input Password">
           <span class="help-block"><?php echo $password_err; ?></span>
         </div>
 
         <div class="form-group">
-          <input type="submit" class="btn btn-block btn-outline-primary" value="login">
+          <button type="submit" class="btn btn-primary" value="login">Login</button>
         </div>
         <p>Don't have an account? <a href="register.php">Sign in</a>.</p>
       </form>
+
     </section>
   </main>
 

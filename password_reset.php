@@ -60,7 +60,44 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta charset="UTF-8">
     <title>Reset Password</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/login.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: seagreen;
+            background: url(image/bg1.jpg) no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wrapper {
+            width: 420px;
+            color: #ffff;
+            padding: 30px 40px;
+            border: 1px solid;
+            border-radius: 20px;
+            backdrop-filter: blur(2px);
+        }
+
+        .wrapper h2 {
+            font-size: 36px;
+            text-align: center;
+        }
+
+        .form-group {
+            padding: 5px;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -70,17 +107,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                 <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
                     <label>New Password</label>
-                    <input type="password" name="new_password" class="form-control" value="<?php echo $new_password; ?>">
+                    <input type="password" name="new_password" class="form-control" placeholder="Input New Password" value="<?php echo $new_password; ?>">
                     <span class="help-block"><?php echo $new_password_err; ?></span>
                 </div>
                 <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                     <label>Confirm Password</label>
-                    <input type="password" name="confirm_password" class="form-control">
+                    <input type="password" name="confirm_password" class="form-control" placeholder="Confirm New Password">
                     <span class="help-block"><?php echo $confirm_password_err; ?></span>
                 </div>
                 <div class="form-group">
-                    <input type="submit" class="btn btn-block btn-primary" value="Submit">
-                    <a class="btn btn-block btn-link bg-light" href="welcome.php">Cancel</a>
+                    <button type="submit" class="btn btn-primary" value="submit">Submit</button>
+                    <a class="btn btn-primary" href="home.php" role="button" style="background-color: red; color: white; border:none">Cancel</a>
                 </div>
             </form>
         </section>

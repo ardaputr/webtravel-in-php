@@ -77,7 +77,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta charset="UTF-8">
 	<title>Sign in</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<link rel="stylesheet" href="css/login.css">
+
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+		}
+
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 100vh;
+			background: seagreen;
+			background: url(image/bg1.jpg) no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+
+		.wrapper {
+			width: 420px;
+			color: #ffff;
+			padding: 30px 40px;
+			border: 1px solid;
+			border-radius: 20px;
+			backdrop-filter: blur(2px);
+		}
+
+		.wrapper h2 {
+			font-size: 36px;
+			text-align: center;
+		}
+
+		.form-group {
+			padding: 5px;
+		}
+	</style>
+
 </head>
 
 <body>
@@ -87,25 +124,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="POST">
 				<div class="form-group <?php (!empty($username_err)) ? 'has_error' : ''; ?>">
 					<label for="username">Username</label>
-					<input type="text" name="username" id="username" class="form-control" value="<?php echo $username ?>">
+					<input type="text" name="username" id="username" class="form-control" placeholder="Create Username" value="<?php echo $username ?>">
 					<span class="help-block"><?php echo $username_err; ?></span>
 				</div>
 
 				<div class="form-group <?php (!empty($password_err)) ? 'has_error' : ''; ?>">
 					<label for="password">Password</label>
-					<input type="password" name="password" id="password" class="form-control" value="<?php echo $password ?>">
+					<input type="password" name="password" id="password" class="form-control" placeholder="Create Password" value="<?php echo $password ?>">
 					<span class="help-block"><?php echo $password_err; ?></span>
 				</div>
 
 				<div class="form-group <?php (!empty($confirm_password_err)) ? 'has_error' : ''; ?>">
 					<label for="confirm_password">Confirm Password</label>
-					<input type="password" name="confirm_password" id="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
+					<input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder="Confirm Password" value="<?php echo $confirm_password; ?>">
 					<span class="help-block"><?php echo $confirm_password_err; ?></span>
 				</div>
 
 				<div class="form-group">
-					<input type="submit" class="btn btn-block btn-outline-success" value="Submit">
-					<input type="reset" class="btn btn-block btn-outline-primary" value="Reset">
+					<button type="submit" class="btn btn-success" value="submit">Submit</button>
+					<button type="reset" class="btn btn-warning" value="reset">Reset</button>
 				</div>
 				<p>Already have an account? <a href="login.php">Login here</a>.</p>
 			</form>
