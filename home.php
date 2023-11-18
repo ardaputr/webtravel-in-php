@@ -24,7 +24,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 	<header class="header" id="header">
 		<section style="position: relative; height: 550px; border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; overflow: hidden;">
 			<video autoplay loop muted style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -1;">
-				<source src="video/bg.mp4" type="video/mp4">
+				<source src="video/vidbg.mp4" type="video/mp4">
 			</video>
 			<nav>
 				<div>
@@ -106,6 +106,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 				<p>Ready to redefine your travel experience? Boole is your guide <br>to extraordinary destinations. Click, discover, and wander!</p>
 			</div>
 		</section>
+
 		<section class="explore">
 			<h1 style="font-weight:600;">Explore to Destination</h1>
 			<div class="container text-center" style="padding-top:20px;">
