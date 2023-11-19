@@ -1,11 +1,17 @@
 <?php
 session_start();
+include('config/config.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 	// header('location: login.php');
 	// exit;
 }
-
+if(!isset($_GET['category'])){
+    $query = mysqli_query($mysql_db, "SELECT * FROM destination");
+}else{
+    $type =$_GET['category'];
+    $query = mysqli_query($mysql_db, "SELECT * FROM  destination WHERE type = '$type'");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,41 +110,60 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 
 		<section class="explore">
 			<h1 style="font-weight:600;">Explore to Destination</h1>
-			<div class="container text-center" style="padding-top:20px;">
-				<div class="row align-items-start">
-					<div class="col">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
+			<div class="category">
+				<ul class="nav justify-content-center">
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="user_home.php" style="color: #4A1D1F;" id="hover">All</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="user_home.php?type=Beach" style="color: #4A1D1F;" id="hover">Beach</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="user_home.php?type=Culinary" style="color: #4A1D1F;" id="hover">Culinary</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="user_home.php?type=Culture" style="color: #4A1D1F;" id="hover">Culture</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="user_home.php?type=Nature" style="color: #4A1D1F;" id="hover">Nature</a>
+					</li>
+				</ul>
+			</div>
+
+			<div class="container" style="margin-top: 10px;">
+				<div class="row">
+					<?php
+					// Check if a specific category is selected
+					$categoryFilter = isset($_GET['type']) ? $_GET['type'] : 'All';
+
+					// Modify the SQL query based on the selected category
+					$sql = "SELECT * FROM destination";
+					if ($categoryFilter !== 'All') {
+						$sql .= " WHERE category = '{$categoryFilter}'";
+					}
+
+					$query = mysqli_query($mysql_db, $sql);
+
+					while ($row = mysqli_fetch_assoc($query)) {
+					?>
+						<div class="col-md-4">
+							<div class="kartu" style="margin-top: 10px; margin-bottom: 10px;">
+								<?php
+								$categoryFolder = $row['category'];
+								$imagePath = "image/{$categoryFolder}/" . $row['picture'];
+								?>
+								<img src="<?php echo $imagePath; ?>" class="card-img-top" alt="Product Image" style="width: 100%; height: 200px;">
+								<div class="card-body">
+									<h5 class="card-title"><?php echo $row['place']; ?></h5>
+									<p class="card-text"><?php echo $row['address']; ?></p>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="col">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
-							</div>
-						</div>
-					</div>
-					<div class="col">
-						<div class="card" style="width: 18rem;">
-							<img src="..." class="card-img-top" alt="...">
-							<div class="card-body">
-								<h5 class="card-title">Card title</h5>
-								<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-								<a href="#" class="btn btn-primary">Go somewhere</a>
-							</div>
-						</div>
-					</div>
+					<?php } ?>
 				</div>
 			</div>
 		</section>
+
 
 		<section class="ads-explore">
 			<h2>Explore all corners of</h2>
