@@ -50,12 +50,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
                                 Data Destination
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark">
-                                <li><a class="dropdown-item" href="#">Add Destination</a></li>
-                                <li><a class="dropdown-item" href="#">Edit Destination</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Delete Destination</a></li>
+                                <li><a class="dropdown-item" href="list_destination.php">List Destination</a></li>
+                                <li><a class="dropdown-item" href="add_destination.php">Add Destination</a></li>
                             </ul>
                         </li>
                         <center>
