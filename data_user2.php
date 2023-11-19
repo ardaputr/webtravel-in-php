@@ -36,7 +36,7 @@ $result = $conn->query($sql);
 
 <div class="navbar">
   <a href="data_admin2.php">Admin Data</a>
-  <a href="data_user.php" class="active">User Data</a>
+  <a href="data_user2.php" class="active">User Data</a>
   <a href="#">Destination List</a>
   <a href="#">Add Destination</a>
 </div>
