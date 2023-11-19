@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			padding: 30px 40px;
 			border: 1px solid;
 			border-radius: 20px;
-			backdrop-filter: blur(2px);
+			backdrop-filter: blur(5px);
 		}
 
 		.wrapper h2 {

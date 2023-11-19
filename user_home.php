@@ -33,23 +33,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 						<li class="nav-item">
 							<a class="nav-link" href="user_home.php" style="color: #FFFFFF;" id="hover">Home</a>
 						</li>
-
-						<?php
-						if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-							//Jika belom login , jadi ga muncul dinavbar
-							echo '
-								<li class="nav-item">
-									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">category</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Blog</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Abous Us</a>
-								</li>
-							';
-						}
-						?>
+						<li class="nav-item">
+							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">category</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Blog</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Abous Us</a>
+						</li>
 
 						<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar" aria-label="Toggle navigation">
 							<span>
@@ -78,6 +70,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 									if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 										// Jika udah login maka nampil reset sama sign out
 										echo '
+											<li>
+												<a class="nav-link" href="#">Wishlist</a>
+											</li>
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
 											</li>
@@ -143,6 +138,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 					</div>
 				</div>
 			</div>
+		</section>
+
+		<section class="ads-explore">
+			<h2>Explore all corners of</h2>
+			<h2>The world with us</h2>
+			<br>
+			<p>Travel is fatal to prejudice, and narrow mindedness,Travel is fatal to prejudice, and narrow mindedness</p>
 		</section>
 	</header>
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>

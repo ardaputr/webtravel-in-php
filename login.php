@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       padding: 30px 40px;
       border: 1px solid;
       border-radius: 20px;
-      backdrop-filter: blur(2px);
+      backdrop-filter: blur(5px);
     }
 
     .wrapper h2 {
@@ -153,7 +153,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="form-group">
           <button type="submit" class="btn btn-primary" value="login">Login</button>
         </div>
-        <p>Don't have an account? <a href="register.php">Sign in</a>.</p>
+        <p>Don't have an account? <a href="register.php" style="color:#0174BE; text-decoration:none; font-weight:bold;">Sign up</a>.</p>
       </form>
     </section>
   </main>
