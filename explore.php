@@ -40,13 +40,13 @@ if(!isset($_GET['category'])){
 							<a class="nav-link" href="user_home.php" style="color: #FFFFFF;" id="hover">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="explore.php" style="color: #FFFFFF;" id="hover">Explore</a>
+							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">category</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Blog</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">About Us</a>
+							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Abous Us</a>
 						</li>
 
 						<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar" aria-label="Toggle navigation">
@@ -107,28 +107,14 @@ if(!isset($_GET['category'])){
 				<p>Ready to redefine your travel experience? Boole is your guide <br>to extraordinary destinations. Click, discover, and wander!</p>
 			</div>
 		</section>
-		
-		<section class="ads-explore">
-		<div class="container px-4">
-			<div class="row gx-5 align-items-center">
-				<div class="col">
-					<div class="p-3" style="max-width:500px;">
-						<h2 style="font-weight:600;">Explore all corners of <br> The World with us</h2> <br>
-						<p>Let's embark on an unforgettable journey around the globe, discovering hidden beauties and experiencing the mesmerizing diversity of cultures together!</p>
-					</div>
-				</div>
-				<div class="col">
-					<img src="image/grp1.jpg" alt="explorepic" style="width: 100%; max-width: 100%; height: auto;"> <!-- Tambahkan gaya CSS untuk memastikan gambar berukuran responsif -->
-				</div>
-			</div>
-		</div>
-	</section>
-
-
+        
 		<section class="explore">
 			<h1 style="font-weight:600;">Explore to Destination</h1>
 			<div class="category">
 				<ul class="nav justify-content-center">
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="user_home.php" style="color: #000000;" id="hover">All</a>
+					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="user_home.php?type=Beach" style="color: #000000;" id="hover">Beach</a>
 					</li>
@@ -147,14 +133,15 @@ if(!isset($_GET['category'])){
 			<div class="container" style="margin-top: 10px;">
 				<div class="row">
 					<?php
+					// Check if a specific category is selected
 					$categoryFilter = isset($_GET['type']) ? $_GET['type'] : 'All';
 
+					// Modify the SQL query based on the selected category
 					$sql = "SELECT * FROM destination";
 					if ($categoryFilter !== 'All') {
 						$sql .= " WHERE category = '{$categoryFilter}'";
 					}
 
-					$sql .= " LIMIT 3";
 					$query = mysqli_query($mysql_db, $sql);
 
 					while ($row = mysqli_fetch_assoc($query)) {
@@ -169,7 +156,7 @@ if(!isset($_GET['category'])){
 								<div class="card-body">
 									<h5 class="card-title"><?php echo $row['place']; ?></h5>
 									<p class="card-text">
-										<iconify-icon icon="carbon:location"></iconify-icon>
+										<iconify-icon icon="carbon:location" ></iconify-icon>
 										<?php echo $row['address']; ?>
 									</p>
 								</div>
@@ -178,7 +165,6 @@ if(!isset($_GET['category'])){
 					<?php } ?>
 				</div>
 			</div>
-
 		</section>
 	</header>
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>

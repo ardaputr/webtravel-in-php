@@ -35,6 +35,44 @@
     margin: 0 auto;
 }
 
+.ads-explore{
+    padding-top: 100px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.kartu{
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 10px;
+    color: #000000;
+    border-radius: 5px 5px 5px 5px;
+    background: rgba(255, 255, 255);
+    position: relative;
+    transition: 0.3s;
+    transform-origin: center;
+    overflow: hidden;
+    border: #e4e4e4 1px solid;
+    border-radius: 20px;
+}
+
+.kartu:hover{
+    cursor: pointer;
+    transform: scale(1.05);
+}
+
+.kartu:hover ~ .kartu{
+    cursor: pointer;
+    transform: translateX(22px);
+}
+
+.kartu h5{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+
+.kartu p{
+    padding-left: 10px;
+}
+
 #hover{
     position: relative;
     display: block;
