@@ -141,6 +141,9 @@ if(!isset($_GET['category'])){
 					<li class="nav-item">
 						<a class="nav-link" href="user_home.php?type=Nature" style="color: #000000;" id="hover">Nature</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="explore.php" style="color: #000000;" id="hover">View All</a>
+					</li>
 				</ul>
 			</div>
 

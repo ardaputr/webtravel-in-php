@@ -40,13 +40,13 @@ if(!isset($_GET['category'])){
 							<a class="nav-link" href="user_home.php" style="color: #FFFFFF;" id="hover">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">category</a>
+							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Explore</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Blog</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Abous Us</a>
+							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">About Us</a>
 						</li>
 
 						<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar" aria-label="Toggle navigation">
@@ -113,19 +113,19 @@ if(!isset($_GET['category'])){
 			<div class="category">
 				<ul class="nav justify-content-center">
 					<li class="nav-item">
-						<a class="nav-link" aria-current="page" href="user_home.php" style="color: #000000;" id="hover">All</a>
+						<a class="nav-link" aria-current="page" href="explore.php" style="color: #000000;" id="hover">All</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="user_home.php?type=Beach" style="color: #000000;" id="hover">Beach</a>
+						<a class="nav-link" href="explore.php?type=Beach" style="color: #000000;" id="hover">Beach</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="user_home.php?type=Culinary" style="color: #000000;" id="hover">Culinary</a>
+						<a class="nav-link" href="explore.php?type=Culinary" style="color: #000000;" id="hover">Culinary</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="user_home.php?type=Culture" style="color: #000000;" id="hover">Culture</a>
+						<a class="nav-link" href="explore.php?type=Culture" style="color: #000000;" id="hover">Culture</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="user_home.php?type=Nature" style="color: #000000;" id="hover">Nature</a>
+						<a class="nav-link" href="explore.php?type=Nature" style="color: #000000;" id="hover">Nature</a>
 					</li>
 				</ul>
 			</div>
