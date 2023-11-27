@@ -64,8 +64,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0174BE;" id="hover">Destination</a>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Edit Destination</a></li>
-                  <li><a class="dropdown-item" href="#">Add Destination</a></li>
+                  <li><a class="dropdown-item" href="edit.php">Edit Destination</a></li>
+                  <li><a class="dropdown-item" href="add.php">Add Destination</a></li>
                 </ul>
 						</li>
 
@@ -125,12 +125,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 
   <div class="content">
   <?php
-								if (isset($_SESSION['username'])) {
-									echo '<h1 class="offcanvas-title" id="offcanvasLightNavbarLabel">Hai, ' . $_SESSION['username'] . '</h1>';
-								} else {
-									echo '<h1 class="offcanvas-title" id="offcanvasLightNavbarLabel">Please login</h1>';
-								}
-								?>
+	if (isset($_SESSION['username'])) {
+		echo '<h1 class="offcanvas-title" id="offcanvasLightNavbarLabel">Hai, ' . $_SESSION['username'] . '</h1>';
+	} else {
+		echo '<h1 class="offcanvas-title" id="offcanvasLightNavbarLabel">Please login</h1>';
+	}
+	?>
   </div>
 
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>

@@ -1,13 +1,11 @@
 <?php
-// Database credentials
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'boole_db');
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "boole_db";
 
-// Attempt to connect to MySQL database
-$mysql_db = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-if (!$mysql_db) {
-	die("Error: Unable to connect " . $mysql_db->connect_error);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }

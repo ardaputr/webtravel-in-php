@@ -101,3 +101,13 @@
     transform: scaleX(1);
     transform-origin: left;
 }
+.desc{
+    font-family: 'Montserrat', sans-serif;
+    width: 420px;
+    color: white;
+    padding: 30px 40px;
+    border: 1px solid;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+

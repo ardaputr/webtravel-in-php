@@ -71,8 +71,8 @@ $result = $conn->query($sql);
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0174BE;" id="hover">Destination</a>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Edit Destination</a></li>
-                  <li><a class="dropdown-item" href="#">Add Destination</a></li>
+                  <li><a class="dropdown-item" href="edit.php">Edit Destination</a></li>
+                  <li><a class="dropdown-item" href="add.php">Add Destination</a></li>
                 </ul>
 						</li>
 
