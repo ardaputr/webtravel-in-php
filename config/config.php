@@ -4,8 +4,9 @@ $username = "root";
 $password = "";
 $dbname = "boole_db";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$mysql_db = new mysqli($servername, $username, $password, $dbname);
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($mysql_db->connect_error) {
+    die("Connection failed: " . $mysql_db->connect_error);
 }
+?>

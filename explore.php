@@ -10,7 +10,7 @@ if(!isset($_GET['category'])){
     $query = mysqli_query($mysql_db, "SELECT * FROM destination");
 }else{
     $type =$_GET['category'];
-    $query = mysqli_query($mysql_db, "SELECT * FROM  destination WHERE type = '$type'");
+    $query = mysqli_query($mysql_db, "SELECT * FROM  destination WHERE category = '$type'");
 }
 ?>
 <!DOCTYPE html>

@@ -1,7 +1,8 @@
 <?php
 include('config/config.php');
 $sql = "SELECT * FROM destination";
-$result = $conn->query($sql);
+$result = $mysql_db->query($sql);
+$row = mysqli_fetch_assoc($result);
 
 if (isset($_POST['update'])) {
     $id = $_POST['id'];
@@ -9,25 +10,57 @@ if (isset($_POST['update'])) {
     $category = $_POST['category'];
     $description = $_POST['description'];
     $address = $_POST['address'];
+    $link_maps = $_POST['link_maps'];
+    $filedestination = './image/'. $category .'/' .$id;
 
-    $query = "UPDATE destinastion SET name = '$place', category = '$category', description = '$description', address = '$address' WHERE id = '$id'";
-    $result = mysqli_query($conn, $query);
+    $query = "UPDATE destination SET place = '$place', category = '$category', description = '$description', address = '$address', link_maps = '$link_maps' WHERE id = '$id'";
+    $result = mysqli_query($mysql_db, $query);
+    
 
-    if (isset($_FILES['Image'])) {
-        $id = mysqli_fetch_assoc(mysqli_query($conn,"SELECT id FROM destination WHERE place = '$place'"));
-        $image = $_FILES['image'];
-        $ImageName = $Image['place'];
-        $explodeImageName = explode(".", $ImageName);
-        $ImageType = end($explodeImageName);
-        $ImageTmpName = $Image['tmp_name'];
-        // print_r($hotelImage);
-        print_r($id);
-
-        if (move_uploaded_file($ImageTmpName, "images/". $id['id']. ".$ImageType")) {
-            $query = "UPDATE hotels SET image = '". $id['id']. ".$ImageType' WHERE id = '$id'";
-            $result = mysqli_query($conn, $query);
+    if (isset($_FILES['image'])) {
+        $place = mysqli_real_escape_string($mysql_db, $_POST['place']);
+        $category = mysqli_real_escape_string($mysql_db, $_POST['category']);
+    
+        $uploadDirectory = 'image/' . strtolower($category) . '/';
+    
+        // if (!is_dir($uploadDirectory) && !mkdir($uploadDirectory, 0755, true)) {
+        //     die("Error creating directory: $uploadDirectory");
+        // }
+    
+        $imageName = uniqid($category . '_', true) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $fileDestination = $uploadDirectory . $imageName;
+    
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $fileDestination)) {
+            $result = mysqli_query($mysql_db, "SELECT id FROM destination WHERE place = '$place' AND category = '$category'");
+            $id = mysqli_fetch_assoc($result);
+    
+            if ($id && mysqli_query($mysql_db, "UPDATE destination SET picture = '$imageName' WHERE id = " . $id['id'])) {
+                echo "Image uploaded and database updated successfully.";
+            } else {
+                echo "Error updating database.";
+            }
+        } else {
+            echo "Error uploading image.";
         }
     }
+    
+    
+
+    // if (isset($_FILES['image'])) {
+    //     $id = mysqli_fetch_assoc(mysqli_query($conn,"SELECT id FROM destination WHERE place = '$place'"));
+    //     $image = $_FILES['image'];
+    //     $ImageName = $Image['place'];
+    //     $explodeImageName = explode(".", $ImageName);
+    //     $ImageType = end($explodeImageName);
+    //     $ImageTmpName = $Image['tmp_name'];
+    //     // print_r($hotelImage);
+    //     print_r($id);
+
+    //     if (move_uploaded_file($ImageTmpName, $filedestination)) {
+    //         $query = "UPDATE destination SET image = '". $id['id']. ".$ImageType' WHERE id = '$id'";
+    //         $result = mysqli_query($conn, $query);
+    //     }
+    // }
 
     if ($result) {
         header("Location: edit.php?message=". $place. " has been updated successfully");
@@ -35,8 +68,8 @@ if (isset($_POST['update'])) {
         header("location: edit.php?message=". $place. " has not been updated successfully");
     }
 }
-$query = "SELECT * FROM destination WHERE id = ". $_POST['id'];
-$result = mysqli_query($conn, $query);
+$query = "SELECT * FROM destination WHERE id = ". $_GET['id'];
+$result = mysqli_query($mysql_db, $query);
 $row = mysqli_fetch_assoc($result);
 
 ?>
@@ -169,7 +202,7 @@ $row = mysqli_fetch_assoc($result);
     }
     ?>
     <center>
-        <form action="process_edit.php" method="POST">
+        <form action="process_edit.php" method="POST" enctype="multipart/form-data">
         <h1 style="padding: 20px;">Update Menu</h1>
             <div class="container">
                 <div class="row">
@@ -193,7 +226,9 @@ $row = mysqli_fetch_assoc($result);
                         <input class="form-control border-dark" type="text" value="<?= $row['link_maps']?>" placeholder="Link Maps"
                             aria-label="default input example" name="link_maps"><br>
                             <input type="hidden" name="id" value="<?= $row['id']; ?>">
-                        <button name="aksi" value="update" type="submit" class="btn btn-primary">Update</button>
+                            <div class="mb-3 mt-5 w-100">
+                    <input type="submit" value="Edit" name="update" class="btn btn-primary w-100">
+                </div>
                     </div>
                     <div class="col-4"></div>
                 </div>
