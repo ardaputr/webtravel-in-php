@@ -43,7 +43,7 @@ if (isset($_POST['update'])) {
             echo "Error uploading image.";
         }
     }
-    
+     //ya
     
 
     // if (isset($_FILES['image'])) {
