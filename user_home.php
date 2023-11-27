@@ -6,11 +6,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 	// header('location: login.php');
 	// exit;
 }
-if(!isset($_GET['category'])){
-    $query = mysqli_query($mysql_db, "SELECT * FROM destination");
-}else{
-    $type =$_GET['category'];
-    $query = mysqli_query($mysql_db, "SELECT * FROM  destination WHERE type = '$type'");
+if (!isset($_GET['category'])) {
+	$query = mysqli_query($mysql_db, "SELECT * FROM destination");
+} else {
+	$type = $_GET['category'];
+	$query = mysqli_query($mysql_db, "SELECT * FROM  destination WHERE type = '$type'");
 }
 ?>
 <!DOCTYPE html>
@@ -107,22 +107,22 @@ if(!isset($_GET['category'])){
 				<p>Ready to redefine your travel experience? Boole is your guide <br>to extraordinary destinations. Click, discover, and wander!</p>
 			</div>
 		</section>
-		
+
 		<section class="ads-explore">
-		<div class="container px-4">
-			<div class="row gx-5 align-items-center">
-				<div class="col">
-					<div class="p-3" style="max-width:500px;">
-						<h2 style="font-weight:600;">Explore all corners of <br> The World with us</h2> <br>
-						<p>Let's embark on an unforgettable journey around the globe, discovering hidden beauties and experiencing the mesmerizing diversity of cultures together!</p>
+			<div class="container px-4">
+				<div class="row gx-5 align-items-center">
+					<div class="col">
+						<div class="p-3" style="max-width:500px;">
+							<h2 style="font-weight:600;">Explore all corners of <br> The World with us</h2> <br>
+							<p>Let's embark on an unforgettable journey around the globe, discovering hidden beauties and experiencing the mesmerizing diversity of cultures together!</p>
+						</div>
+					</div>
+					<div class="col">
+						<img src="image/grp1.jpg" alt="explorepic" style="width: 100%; max-width: 100%; height: auto;"> <!-- Tambahkan gaya CSS untuk memastikan gambar berukuran responsif -->
 					</div>
 				</div>
-				<div class="col">
-					<img src="image/grp1.jpg" alt="explorepic" style="width: 100%; max-width: 100%; height: auto;"> <!-- Tambahkan gaya CSS untuk memastikan gambar berukuran responsif -->
-				</div>
 			</div>
-		</div>
-	</section>
+		</section>
 
 
 		<section class="explore">
@@ -147,40 +147,44 @@ if(!isset($_GET['category'])){
 				</ul>
 			</div>
 
-			<div class="container" style="margin-top: 10px;">
-				<div class="row">
-					<?php
-					$categoryFilter = isset($_GET['type']) ? $_GET['type'] : 'All';
+			<section class="card-destination">
+				<div class="container" style="margin-top: 10px;">
+					<div class="row">
+						<?php
+						$categoryFilter = isset($_GET['type']) ? $_GET['type'] : 'All';
 
-					$sql = "SELECT * FROM destination";
-					if ($categoryFilter !== 'All') {
-						$sql .= " WHERE category = '{$categoryFilter}'";
-					}
+						$sql = "SELECT * FROM destination";
+						if ($categoryFilter !== 'All') {
+							$sql .= " WHERE category = '{$categoryFilter}'";
+						}
 
-					$sql .= " LIMIT 3";
-					$query = mysqli_query($mysql_db, $sql);
+						$sql .= " LIMIT 3";
+						$query = mysqli_query($mysql_db, $sql);
 
-					while ($row = mysqli_fetch_assoc($query)) {
-					?>
-						<div class="col-md-4">
-							<div class="kartu" style="margin-top: 10px; margin-bottom: 10px;">
-								<?php
-								$categoryFolder = $row['category'];
-								$imagePath = "image/{$categoryFolder}/" . $row['picture'];
-								?>
-								<img src="<?php echo $imagePath; ?>" class="card-img-top" alt="Product Image" style="width: 100%; height: 200px;">
-								<div class="card-body">
-									<h5 class="card-title"><?php echo $row['place']; ?></h5>
-									<p class="card-text">
-										<iconify-icon icon="carbon:location"></iconify-icon>
-										<?php echo $row['address']; ?>
-									</p>
+						while ($row = mysqli_fetch_assoc($query)) {
+						?>
+							<div class="col-md-4">
+								<div class="kartu" style="margin-top: 10px; margin-bottom: 10px;">
+									<?php
+									$categoryFolder = $row['category'];
+									$imagePath = "image/{$categoryFolder}/" . $row['picture'];
+									?>
+									<a href="detail.php?destination_id=<?php echo $row['id']; ?>">
+										<img src="<?php echo $imagePath; ?>" class="card-img-top" alt="Product Image" style="width: 100%; height: 200px;">
+										<div class="card-body">
+											<h5 class="card-title"><?php echo $row['place']; ?></h5>
+											<p class="card-text">
+												<iconify-icon icon="carbon:location"></iconify-icon>
+												<?php echo $row['address']; ?>
+											</p>
+										</div>
+									</a>
 								</div>
 							</div>
-						</div>
-					<?php } ?>
+						<?php } ?>
+					</div>
 				</div>
-			</div>
+			</section>
 
 		</section>
 	</header>
