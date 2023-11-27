@@ -5,7 +5,47 @@ include('config/config.php');
 $sql = "SELECT username, password, id, created_at FROM users WHERE role='admin'";
 $result = $mysql_db->query($sql);
 
+if (isset($_POST['add'])) {
+    $place = mysqli_real_escape_string($mysql_db, $_POST['place']);
+    $category = mysqli_real_escape_string($mysql_db, $_POST['category']);
+    $description = mysqli_real_escape_string($mysql_db, $_POST['description']);
+    $address = mysqli_real_escape_string($mysql_db, $_POST['address']);
+    $link_maps = mysqli_real_escape_string($mysql_db, $_POST['link_maps']);
 
+    $query = "INSERT INTO destination (place, category, description, address, link_maps) VALUES ('$place', '$category', '$description', '$address', '$link_maps')";
+    $result = mysqli_query($mysql_db, $query);
+
+    if ($result) {
+        $id = mysqli_insert_id($mysql_db);
+
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == UPLOAD_ERR_OK) {
+            $uploadDirectory = 'image/' . strtolower($category) . '/';
+            $imageName = uniqid($category . '_', true) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+            $fileDestination = $uploadDirectory . $imageName;
+
+            if (!is_dir($uploadDirectory) && !mkdir($uploadDirectory, 0755, true)) {
+                die("Error creating directory: $uploadDirectory");
+            }
+
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $fileDestination)) {
+                $query = "UPDATE destination SET picture = '$imageName' WHERE id = $id";
+                $result = mysqli_query($mysql_db, $query);
+
+                if ($result) {
+                    header("Location: edit.php?message=$place has been added successfully");
+                } else {
+                    header("Location: edit.php?message=Error updating database");
+                }
+            } else {
+                header("Location: edit.php?message=Error uploading image");
+            }
+        } else {
+            header("Location: edit.php?message=$place has been added successfully");
+        }
+    } else {
+        header("Location: edit.php?message=Failed to add destination");
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -118,6 +158,43 @@ $result = $mysql_db->query($sql);
                 </div>
         </div>
     </nav>
+
+    <center>
+        <form action="add.php" method="POST" enctype="multipart/form-data">
+            <h1 style="padding-top: 10px;">Add Destination</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <label class="mt-3">Place Name</label>
+                        <input type="text" class="form-control" id="place" name="place" placeholder="Enter Place Name" required>
+                        <label class="mt-3">Category</label>
+                        <select class="form-select border-dark" aria-label="default select example" name="category" required>
+                            <option value="" disabled selected>Category</option>
+                            <option value="Beach">Beach</option>
+                            <option value="Culinary">Culinary</option>
+                            <option value="Culture">Culture</option>
+                            <option value="Nature">Nature</option>
+                        </select>
+                        <label class="mt-3">Description</label>
+                        <textarea class="form-control border-dark" rows="3" value="descripton" placeholder="Input New Description" aria-label="default input example" name="description" id="description"></textarea>
+                        <label class="mt-3">Address</label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter Addres" required>
+                        <label for="Image" class="form-label" style="margin-top: 20px;">Image (Optional)</label>
+                        <input type="file" class="form-control" id="Image" name="image" accept="image/*">
+                        <label class="mt-3">Link Maps</label>
+                        <input type="text" class="form-control" id="link_maps" name="link_maps" placeholder="Enter link Maps" required>
+                        <!-- <input type="hidden" name="id" value="<?= $row['id']; ?>"> -->
+                        <div class="mb-3 mt-1 w-100">
+                            <button type="submit" class="btn btn-primary" name="add">Add Destination</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4"></div>
+            </div>
+            </div>
+        </form>
+    </center>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

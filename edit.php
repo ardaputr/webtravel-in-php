@@ -29,7 +29,7 @@ if (isset($_GET['aksi'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Data</title>
+    <title>Edit Destination</title>
     <!-- <link rel="stylesheet" href="css/dashboard.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -134,6 +134,9 @@ if (isset($_GET['aksi'])) {
         </div>
     </nav>
     <section class="data">
+        <center>
+            <h3 style=" font-weight: bolder;">Data Destination</h3><br>
+        </center>
         <?php
         if (isset($_GET['pesan'])) {
             $pesan = $_GET['pesan'];;
@@ -164,8 +167,6 @@ if (isset($_GET['aksi'])) {
                 echo '<td>' . $row['address'] . '</td>';
                 echo '<td><a href="process_edit.php?id=' . $row['id'] . '" class="btn btn-primary">Edit</a></td>';
                 echo '<td><a href="edit.php?id=' . $row['id'] . ' &aksi=delete" class="btn btn-danger">Delete</a></td>';
-
-
                 echo '</tr>';
                 echo '</tbody>';
             }
@@ -174,7 +175,10 @@ if (isset($_GET['aksi'])) {
             echo "No records found";
         }
         $mysql_db->close();
-        ?>
+        ?><br>
+        <center>
+            <a href="add.php" class="btn btn-success" type="button">Add Destination</a>
+        </center><br>
     </section>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

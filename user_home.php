@@ -74,7 +74,7 @@ if (!isset($_GET['category'])) {
 										// Jika udah login maka nampil reset sama sign out
 										echo '
 											<li>
-												<a class="nav-link" href="#">Wishlist</a>
+												<a class="nav-link" href="explore.php">Explore</a>
 											</li>
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
