@@ -1,17 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "boole_db";
+session_start();
+include('config/config.php');
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+$sql = "SELECT username, password, id, created_at FROM users WHERE role='admin'";
+$result = $mysql_db->query($sql);
 
 $sql = "SELECT * FROM destination";
-$result = $conn->query($sql);
+$result = $mysql_db->query($sql);
 
 if (isset($_GET['aksi'])) {
     $aksi = $_GET['aksi'];
@@ -39,8 +34,7 @@ if (isset($_GET['aksi'])) {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
     <style>
         body {
@@ -76,32 +70,26 @@ if (isset($_GET['aksi'])) {
                     <a class="nav-link" href="admin_home.php" style="color: #0174BE;" id="hover">Home</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: #0174BE;" id="hover">Data</a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0174BE;" id="hover">Data</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="data_admin.php">Admin Data</a></li>
                         <li><a class="dropdown-item" href="data_user.php">User Data</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false" style="color: #0174BE;" id="hover">Destination</a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0174BE;" id="hover">Destination</a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="edit.php">Edit Destination</a></li>
                         <li><a class="dropdown-item" href="add.php">Add Destination</a></li>
                     </ul>
                 </li>
 
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar" aria-label="Toggle navigation">
                     <span>
-                        <iconify-icon icon="iconamoon:profile-circle-fill" style="color: #0174BE;" width="40"
-                            height="40"></iconify-icon>
+                        <iconify-icon icon="iconamoon:profile-circle-fill" style="color: #0174BE;" width="40" height="40"></iconify-icon>
                     </span>
                 </button>
-                <div class="offcanvas offcanvas-end text-bg-light" tabindex="-1" id="offcanvasLightNavbar"
-                    aria-labelledby="offcanvasLightNavbarLabel">
+                <div class="offcanvas offcanvas-end text-bg-light" tabindex="-1" id="offcanvasLightNavbar" aria-labelledby="offcanvasLightNavbarLabel">
                     <div class="offcanvas-header">
 
                         <?php
@@ -112,8 +100,7 @@ if (isset($_GET['aksi'])) {
                         }
                         ?>
 
-                        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
                         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
@@ -124,9 +111,6 @@ if (isset($_GET['aksi'])) {
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                 // Jika udah login maka nampil reset sama sign out
                                 echo '
-											<li>
-												<a class="nav-link" href="#">Wishlist</a>
-											</li>
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
 											</li>
@@ -152,11 +136,10 @@ if (isset($_GET['aksi'])) {
     <section class="data">
         <?php
         if (isset($_GET['pesan'])) {
-            $pesan = $_GET['pesan'];
-            ;
+            $pesan = $_GET['pesan'];;
             if ($pesan == 'gagal') { ?>
                 <h3 style="color: red;">Failed to delete</h3>
-            <?php }
+        <?php }
         }
         ?>
         <?php
@@ -190,13 +173,11 @@ if (isset($_GET['aksi'])) {
         } else {
             echo "No records found";
         }
-        $conn->close();
+        $mysql_db->close();
         ?>
     </section>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 </body>
 
