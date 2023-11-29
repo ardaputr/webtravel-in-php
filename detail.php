@@ -100,7 +100,7 @@ if (!$destination) {
                 <div class="row g-0">
                     <div class="col-6 col-md-8" style="padding-left: 50px; padding-top: 25px">
                         <div class="container mt-0" style="backdrop-filter: blur(3px); color: wheat; background-color: white; 
-                    color: black; background: rgb(189, 189, 0); background: rgba(189, 189, 189, 0.5); padding: 10px 20px; border: 1px solid; border-radius: 20px;">
+                            color: black; background: rgb(189, 189, 0); background: rgba(189, 189, 189, 0.5); padding: 10px 20px; border: 1px solid; border-radius: 20px;">
                             <center>
                                 <h1 style="color: white; padding-bottom: 10px;">
                                     <?php echo $destination['place']; ?>
@@ -120,13 +120,11 @@ if (!$destination) {
                     </div>
                     <div class="col-sm-6 col-md-4" style="padding-left: 20px; padding-right: 50px; padding-top: 25px">
                         <div class="container mt-0" style="backdrop-filter: blur(3px); color: wheat; background-color: white; 
-                    color: black; background: rgb(189, 189, 0); background: rgba(189, 189, 189, 0.5); padding: 10px 20px; border: 1px solid; border-radius: 20px;">
+                            color: black; background: rgb(189, 189, 0); background: rgba(189, 189, 189, 0.5); padding: 10px 20px; border: 1px solid; border-radius: 20px;">
                             <img style="width: 100%; height: 50%; margin-bottom: 10px; margin-top: 10px; border-radius: 15px;" src="image/<?php echo $destination['category']; ?>/<?php echo $destination['picture']; ?>">
                             <a href="<?php echo $destination['link_maps']; ?>" style="margin-top: 10px; margin-bottom: 10px;" class="btn btn-primary" target="_blank">View on Maps</a>
                         </div>
                     </div>
-                </div>
-                </div>
                 </div>
             </section>
     </header>
