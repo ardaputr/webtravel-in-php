@@ -64,8 +64,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #0174BE;" id="hover">Destination</a>
               <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Edit Destination</a></li>
-                  <li><a class="dropdown-item" href="#">Add Destination</a></li>
+                  <li><a class="dropdown-item" href="edit.php">Edit Destination</a></li>
+                  <li><a class="dropdown-item" href="add.php">Add Destination</a></li>
                 </ul>
 						</li>
 
@@ -97,7 +97,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 										// Jika udah login maka nampil reset sama sign out
 										echo '
 											<li>
-												<a class="nav-link" href="#">Wishlist</a>
+												<a class="nav-link" href="user_home.php">Go to website</a>
 											</li>
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>

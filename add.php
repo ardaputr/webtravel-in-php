@@ -134,6 +134,9 @@ if (isset($_POST['add'])) {
                             <?php
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
                                 echo '
+                                            <li>
+                                                <a class="nav-link" href="user_home.php">Go to website</a>
+                                            </li>
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
 											</li>
