@@ -43,7 +43,7 @@ if (!isset($_GET['category'])) {
 							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Explore</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">About Us</a>
+							<a class="nav-link" href="about.php" style="color: #FFFFFF;" id="hover">About Us</a>
 						</li>
 						<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar" aria-label="Toggle navigation">
 							<span>
