@@ -12,7 +12,7 @@ if (isset($_GET['aksi'])) {
     $aksi = $_GET['aksi'];
     if ($aksi == "delete") {
         $id = $_GET['id'];
-        $query = mysqli_query($conn, "DELETE FROM destination WHERE id = '$id'");
+        $query = mysqli_query($mysql_db, "DELETE FROM destination WHERE id = '$id'");
         if ($query) {
             header('location:edit.php');
         } else {
@@ -30,7 +30,6 @@ if (isset($_GET['aksi'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Destination</title>
-    <!-- <link rel="stylesheet" href="css/dashboard.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -109,7 +108,6 @@ if (isset($_GET['aksi'])) {
                             </li>
                             <?php
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                                // Jika udah login maka nampil reset sama sign out
                                 echo '
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
@@ -119,7 +117,6 @@ if (isset($_GET['aksi'])) {
 											</li>
 										';
                             } else {
-                                // Jika belum login cuman tampil login ajahhh
                                 echo '
 											<li style="text-align: center;">
 												<a class="nav-link" href="login.php">Login</a>
@@ -180,6 +177,11 @@ if (isset($_GET['aksi'])) {
             <a href="add.php" class="btn btn-success" type="button">Add Destination</a>
         </center><br>
     </section>
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-muted">© 2023 Boole Dashboard</span>
+        </div>
+    </footer>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 

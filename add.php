@@ -55,7 +55,6 @@ if (isset($_POST['add'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Data</title>
-    <!-- <link rel="stylesheet" href="css/dashboard.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -134,7 +133,6 @@ if (isset($_POST['add'])) {
                             </li>
                             <?php
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                                // Jika udah login maka nampil reset sama sign out
                                 echo '
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
@@ -144,7 +142,6 @@ if (isset($_POST['add'])) {
 											</li>
 										';
                             } else {
-                                // Jika belum login cuman tampil login ajahhh
                                 echo '
 											<li style="text-align: center;">
 												<a class="nav-link" href="login.php">Login</a>
@@ -170,23 +167,26 @@ if (isset($_POST['add'])) {
                         <input type="text" class="form-control" id="place" name="place" placeholder="Enter Place Name" required>
                         <label class="mt-3">Category</label>
                         <select class="form-select border-dark" aria-label="default select example" name="category" required>
-                            <option value="" disabled selected>Category</option>
+                            <option value="" disabled selected>Select Category</option>
                             <option value="Beach">Beach</option>
                             <option value="Culinary">Culinary</option>
                             <option value="Culture">Culture</option>
                             <option value="Nature">Nature</option>
                         </select>
                         <label class="mt-3">Description</label>
-                        <textarea class="form-control border-dark" rows="3" value="descripton" placeholder="Input New Description" aria-label="default input example" name="description" id="description"></textarea>
+                        <textarea class="form-control border-dark" rows="3" value="descripton" placeholder="Enter Description" aria-label="default input example" name="description" id="description"></textarea>
                         <label class="mt-3">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter Addres" required>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Enter Address" required>
                         <label for="Image" class="form-label" style="margin-top: 20px;">Image (Optional)</label>
                         <input type="file" class="form-control" id="Image" name="image" accept="image/*">
                         <label class="mt-3">Link Maps</label>
-                        <input type="text" class="form-control" id="link_maps" name="link_maps" placeholder="Enter link Maps" required>
+                        <input type="text" class="form-control" id="link_maps" name="link_maps" placeholder="Enter link Maps" required><br><br>
                         <!-- <input type="hidden" name="id" value="<?= $row['id']; ?>"> -->
                         <div class="mb-3 mt-1 w-100">
-                            <button type="submit" class="btn btn-primary" name="add">Add Destination</button>
+                            <input type="submit" name="add" class="btn btn-primary w-100">
+                        </div>
+                        <div class="mb-3 mt-1 w-100">
+                            <a href="edit.php" class="btn btn-secondary w-100">Cancel</a>
                         </div>
                     </div>
                 </div>
@@ -195,6 +195,11 @@ if (isset($_POST['add'])) {
             </div>
         </form>
     </center>
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-muted">© 2023 Boole Dashboard</span>
+        </div>
+    </footer>
 
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>

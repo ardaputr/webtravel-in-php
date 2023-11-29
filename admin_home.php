@@ -15,7 +15,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Dashboard</title>
-	<!-- <link rel="stylesheet" href="css/dashboard.css"> -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -40,7 +39,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 			flex-direction: column;
 			align-items: center;
 			justify-content: center;
-			height: 100vh;
+			height: 77vh;
 			text-align: center;
 		}
 	</style>
@@ -68,7 +67,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 						<li><a class="dropdown-item" href="add.php">Add Destination</a></li>
 					</ul>
 				</li>
-
 				<button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar" aria-label="Toggle navigation">
 					<span>
 						<iconify-icon icon="iconamoon:profile-circle-fill" style="color: #0174BE;" width="40" height="40"></iconify-icon>
@@ -94,7 +92,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 							</li>
 							<?php
 							if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-								// Jika udah login maka nampil reset sama sign out
 								echo '
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
@@ -104,7 +101,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 											</li>
 										';
 							} else {
-								// Jika belum login cuman tampil login ajahhh
 								echo '
 											<li style="text-align: center;">
 												<a class="nav-link" href="login.php">Login</a>
@@ -112,14 +108,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 										';
 							}
 							?>
-
 						</ul>
 					</div>
 				</div>
+			</ul>
 		</div>
 	</nav>
-
-
 	<div class="content">
 		<?php
 		if (isset($_SESSION['username'])) {
@@ -129,7 +123,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
 		}
 		?>
 	</div>
-
+	<footer class="footer mt-auto py-3" style="position: fixed; bottom:0; display:flex; width:100%; ">
+		<div class="container text-center">
+			<span class="text-muted">© 2023 Boole Dashboard</span>
+		</div>
+	</footer>
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

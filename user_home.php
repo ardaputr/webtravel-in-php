@@ -39,9 +39,20 @@ if (!isset($_GET['category'])) {
 						<li class="nav-item">
 							<a class="nav-link" href="user_home.php" style="color: #FFFFFF;" id="hover">Home</a>
 						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="explore.php" style="color: #FFFFFF;" id="hover">Explore</a>
-						</li>
+						<?php
+						if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+							echo '
+								<li class="nav-item">
+									<a class="nav-link" href="explore.php" style="color: #FFFFFF;" id="hover">Explore</a>
+								</li>';
+						} else {
+							echo '
+								<li class="nav-item">
+									<a class="nav-link" href="login.php" style="color: #FFFFFF;" id="hover">Explore</a>
+								</li>';
+						}
+						?>
+
 						<li class="nav-item">
 							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">About Us</a>
 						</li>
@@ -67,11 +78,10 @@ if (!isset($_GET['category'])) {
 							<div class="offcanvas-body">
 								<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
 									<li class="nav-item">
-										<a class="nav-link active" aria-current="page" href="home.php">Home</a>
+										<a class="nav-link active" aria-current="page" href="user_home.php">Home</a>
 									</li>
 									<?php
 									if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-										// Jika udah login maka nampil reset sama sign out
 										echo '
 											<li>
 												<a class="nav-link" href="explore.php">Explore</a>
@@ -84,7 +94,6 @@ if (!isset($_GET['category'])) {
 											</li>
 										';
 									} else {
-										// Jika belum login cuman tampil login ajahhh
 										echo '
 											<li style="text-align: center;">
 												<a class="nav-link" href="login.php">Login</a>
@@ -92,7 +101,6 @@ if (!isset($_GET['category'])) {
 										';
 									}
 									?>
-
 								</ul>
 							</div>
 						</div>
@@ -121,7 +129,6 @@ if (!isset($_GET['category'])) {
 			</div>
 		</section>
 
-
 		<section class="explore">
 			<h1 style="font-weight:600;">Explore to Destination</h1>
 			<div class="category">
@@ -138,9 +145,18 @@ if (!isset($_GET['category'])) {
 					<li class="nav-item">
 						<a class="nav-link" href="user_home.php?type=Nature" style="color: #000000;" id="hover">Nature</a>
 					</li>
-					<li class="nav-item">
+					<?php
+					if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+						echo '<li class="nav-item">
 						<a class="nav-link" href="explore.php" style="color: #000000;" id="hover">View All</a>
-					</li>
+						</li>';
+					} else {
+						echo '<li class="nav-item">
+						<a class="nav-link" href="login.php" style="color: #000000;" id="hover">View All</a>
+						</li>';
+					}
+					?>
+
 				</ul>
 			</div>
 

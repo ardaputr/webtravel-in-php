@@ -4,8 +4,6 @@ include('config/config.php');
 
 $sql = "SELECT username, password, id, created_at FROM users WHERE role='admin'";
 $result = $mysql_db->query($sql);
-
-
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +13,6 @@ $result = $mysql_db->query($sql);
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Data</title>
-  <!-- <link rel="stylesheet" href="css/dashboard.css"> -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -94,7 +91,6 @@ $result = $mysql_db->query($sql);
               </li>
               <?php
               if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                // Jika udah login maka nampil reset sama sign out
                 echo '
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
@@ -104,7 +100,6 @@ $result = $mysql_db->query($sql);
 											</li>
 										';
               } else {
-                // Jika belum login cuman tampil login ajahhh
                 echo '
 											<li style="text-align: center;">
 												<a class="nav-link" href="login.php">Login</a>
@@ -148,6 +143,11 @@ $result = $mysql_db->query($sql);
     $mysql_db->close();
     ?>
   </section>
+  <footer class="footer mt-auto py-3" style="position: fixed; bottom:0; display:flex; width:100%; ">
+    <div class="container text-center">
+      <span class="text-muted">© 2023 Boole Dashboard</span>
+    </div>
+  </footer>
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 

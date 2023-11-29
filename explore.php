@@ -70,7 +70,6 @@ if (!isset($_GET['category'])) {
 									</li>
 									<?php
 									if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-										// Jika udah login maka nampil reset sama sign out
 										echo '
 											<li>
 												<a class="nav-link" href="explore.php">Explore</a>
@@ -83,7 +82,6 @@ if (!isset($_GET['category'])) {
 											</li>
 										';
 									} else {
-										// Jika belum login cuman tampil login ajahhh
 										echo '
 											<li style="text-align: center;">
 												<a class="nav-link" href="login.php">Login</a>
@@ -129,17 +127,12 @@ if (!isset($_GET['category'])) {
 			<div class="container" style="margin-top: 10px;">
 				<div class="row">
 					<?php
-					// Check if a specific category is selected
 					$categoryFilter = isset($_GET['type']) ? $_GET['type'] : 'All';
-
-					// Modify the SQL query based on the selected category
 					$sql = "SELECT * FROM destination";
 					if ($categoryFilter !== 'All') {
 						$sql .= " WHERE category = '{$categoryFilter}'";
 					}
-
 					$query = mysqli_query($mysql_db, $sql);
-
 					while ($row = mysqli_fetch_assoc($query)) {
 					?>
 						<div class="col-md-4">

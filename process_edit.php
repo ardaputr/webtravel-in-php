@@ -22,11 +22,6 @@ if (isset($_POST['update'])) {
         $category = mysqli_real_escape_string($mysql_db, $_POST['category']);
 
         $uploadDirectory = 'image/' . strtolower($category) . '/';
-
-        // if (!is_dir($uploadDirectory) && !mkdir($uploadDirectory, 0755, true)) {
-        //     die("Error creating directory: $uploadDirectory");
-        // }
-
         $imageName = uniqid($category . '_', true) . '.' . pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         $fileDestination = $uploadDirectory . $imageName;
 
@@ -44,23 +39,6 @@ if (isset($_POST['update'])) {
         }
     }
 
-
-    // if (isset($_FILES['image'])) {
-    //     $id = mysqli_fetch_assoc(mysqli_query($conn,"SELECT id FROM destination WHERE place = '$place'"));
-    //     $image = $_FILES['image'];
-    //     $ImageName = $Image['place'];
-    //     $explodeImageName = explode(".", $ImageName);
-    //     $ImageType = end($explodeImageName);
-    //     $ImageTmpName = $Image['tmp_name'];
-    //     // print_r($hotelImage);
-    //     print_r($id);
-
-    //     if (move_uploaded_file($ImageTmpName, $filedestination)) {
-    //         $query = "UPDATE destination SET image = '". $id['id']. ".$ImageType' WHERE id = '$id'";
-    //         $result = mysqli_query($conn, $query);
-    //     }
-    // }
-
     if ($result) {
         header("Location: edit.php?message=" . $place . " has been updated successfully");
     } else {
@@ -72,8 +50,6 @@ $result = mysqli_query($mysql_db, $query);
 $row = mysqli_fetch_assoc($result);
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,7 +105,6 @@ $row = mysqli_fetch_assoc($result);
                         <li><a class="dropdown-item" href="add.php">Add Destination</a></li>
                     </ul>
                 </li>
-
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLightNavbar" aria-controls="offcanvasLightNavbar" aria-label="Toggle navigation">
                     <span>
                         <iconify-icon icon="iconamoon:profile-circle-fill" style="color: #0174BE;" width="40" height="40"></iconify-icon>
@@ -137,7 +112,6 @@ $row = mysqli_fetch_assoc($result);
                 </button>
                 <div class="offcanvas offcanvas-end text-bg-light" tabindex="-1" id="offcanvasLightNavbar" aria-labelledby="offcanvasLightNavbarLabel">
                     <div class="offcanvas-header">
-
                         <?php
                         if (isset($_SESSION['username'])) {
                             echo '<h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">Hai, ' . $_SESSION['username'] . '</h5>';
@@ -145,7 +119,6 @@ $row = mysqli_fetch_assoc($result);
                             echo '<h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">Please login</h5>';
                         }
                         ?>
-
                         <button type="button" class="btn-close btn-close-black" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
                     <div class="offcanvas-body">
@@ -155,7 +128,6 @@ $row = mysqli_fetch_assoc($result);
                             </li>
                             <?php
                             if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-                                // Jika udah login maka nampil reset sama sign out
                                 echo '
 											<li>
 												<a class="nav-link" href="password_reset.php">Reset Password</a>
@@ -165,7 +137,6 @@ $row = mysqli_fetch_assoc($result);
 											</li>
 										';
                             } else {
-                                // Jika belum login cuman tampil login ajahhh
                                 echo '
 											<li style="text-align: center;">
 												<a class="nav-link" href="login.php">Login</a>
@@ -173,7 +144,6 @@ $row = mysqli_fetch_assoc($result);
 										';
                             }
                             ?>
-
                         </ul>
                     </div>
                 </div>
@@ -183,7 +153,7 @@ $row = mysqli_fetch_assoc($result);
     if (isset($_GET['pesan'])) {
         $pesan = $_GET['pesan'];
         if ($pesan == "gagal") { ?>
-            <h3 style="color: red;">Failed to update bread!</h3>
+            <h3 style="color: red;">Failed To Update Destination!</h3>
     <?php      }
     }
     ?>
@@ -196,7 +166,7 @@ $row = mysqli_fetch_assoc($result);
                     <div class="col-4"></div>
                     <div class="col-4">
                         <label class="mt-3">Place Name</label>
-                        <input class="form-control border-dark" type="text" value="" placeholder="Change Place Name" aria-label="default input example" name="place">
+                        <input class="form-control border-dark" type="text" value=" <?= $row['place'] ?>" placeholder="Change Place Name" aria-label="default input example" name="place">
                         <label class="mt-3">Category</label>
                         <select class="form-select border-dark" aria-label="default select example" name="category" required>
                             <option value="" disabled selected>Category</option>
@@ -206,15 +176,18 @@ $row = mysqli_fetch_assoc($result);
                             <option value="Nature">Nature</option>
                         </select>
                         <label class="mt-3">Description</label>
-                        <textarea class="form-control border-dark" rows="3" value="" placeholder="Change Description" aria-label="default input example" name="description"></textarea>
+                        <textarea class="form-control border-dark" rows="3" value="<?= $row['description'] ?>" placeholder="Change Description" aria-label="default input example" name="description"></textarea>
                         <label class="mt-3">Address</label>
-                        <input class="form-control border-dark" type="text" value="" placeholder="Change Address" aria-label="default input example" name="address">
+                        <input class="form-control border-dark" type="text" value=" <?= $row['address'] ?>" placeholder="Change Address" aria-label="default input example" name="address">
                         <label for="Image" class="form-label" style="margin-top: 20px;">Image (Optional)</label>
                         <input type="file" class="form-control" id="Image" name="image" accept="image/*">
                         <label class="mt-3">Link Maps</label>
-                        <input class="form-control border-dark" type="text" value="" placeholder="Change Link Maps" aria-label="default input example" name="link_maps"><br>
+                        <input class="form-control border-dark" type="text" value=" <?= $row['link_maps'] ?>" placeholder="Change Link Maps" aria-label="default input example" name="link_maps"><br>
                         <div class="mb-3 mt-1 w-100">
                             <input type="submit" value="Edit" name="update" class="btn btn-primary w-100">
+                        </div>
+                        <div class="mb-3 mt-1 w-100">
+                            <a href="edit.php" class="btn btn-secondary w-100">Cancel</a>
                         </div>
                     </div>
                     <div class="col-4"></div>
@@ -222,6 +195,11 @@ $row = mysqli_fetch_assoc($result);
             </div>
         </form>
     </center>
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <span class="text-muted">© 2023 Boole Dashboard</span>
+        </div>
+    </footer>
 </body>
 
 </html>

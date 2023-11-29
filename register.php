@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$username_err = "Please enter a username.";
 	} else {
 		$sql = 'SELECT id FROM users WHERE username = ?';
-
 		if ($stmt = $mysql_db->prepare($sql)) {
 			$param_username = trim($_POST['username']);
 			$stmt->bind_param('s', $param_username);
@@ -26,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$stmt->close();
 		}
 	}
-
 	if (empty(trim($_POST["password"]))) {
 		$password_err = "Please enter a password.";
 	} elseif (strlen(trim($_POST["password"])) < 6) {
@@ -34,7 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	} else {
 		$password = trim($_POST["password"]);
 	}
-
 	if (empty(trim($_POST["confirm_password"]))) {
 		$confirm_password_err = "Please confirm password.";
 	} else {
@@ -43,25 +40,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$confirm_password_err = "Password did not match.";
 		}
 	}
-
 	if (empty($_POST['role'])) {
 		$role_err = "Please select a role.";
 	} else {
 		$role = $_POST['role'];
 	}
-
 	if (empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($role_err)) {
-
 		$sql = 'INSERT INTO users (username, password, role) VALUES (?,?,?)';
-
 		if ($stmt = $mysql_db->prepare($sql)) {
-
 			$param_username = $username;
 			$param_password = $password;
 			$param_role = $role;
-
 			$stmt->bind_param('sss', $param_username, $param_password, $param_role);
-
 			if ($stmt->execute()) {
 				header('location: ./login.php');
 			} else {
@@ -74,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	<meta charset="UTF-8">
 	<title>Sign in</title>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
 	<style>
 		* {
 			box-sizing: border-box;
@@ -119,7 +107,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			padding: 5px;
 		}
 	</style>
-
 </head>
 
 <body>
@@ -138,15 +125,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<select name="role" class="form-control">
 						<option value="" disabled selected>Please select role</option>
 						<?php
-						$userTypes = array("user", "admin");
-
+						$userTypes = array("user");
 						foreach ($userTypes as $type) {
 							echo "<option value=\"$type\">$type</option>";
 						}
 						?>
 					</select>
 				</div>
-
 
 				<div class="form-group <?php (!empty($password_err)) ? 'has_error' : ''; ?>">
 					<label for="password">Password</label>
@@ -164,11 +149,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 					<button type="submit" class="btn btn-success" value="submit">Submit</button>
 					<button type="reset" class="btn btn-warning" value="reset">Reset</button>
 				</div>
-				<p>Already have an account? <a href="login.php">Login here</a>.</p>
+				<p>Already have an account? <a href="login.php" style="color:#0174BE; text-decoration:none; font-weight:bold;">Login here</a>.</p>
 			</form>
 		</section>
 	</main>
-
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 
