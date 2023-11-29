@@ -26,6 +26,36 @@ if (!$destination) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destination Details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        #hover {
+            position: relative;
+            display: block;
+            transition: 0.5s;
+            cursor: pointer;
+        }
+
+        #hover::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 3px;
+            top: 45px;
+            left: 0;
+            transition: transform 0.5s;
+            transform: scaleX(0);
+            transform-origin: right;
+            background-color: #0174BE;
+        }
+
+        #hover:hover {
+            color: #7752FE;
+        }
+
+        #hover:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    </style>
 </head>
 
 <body>
@@ -90,7 +120,6 @@ if (!$destination) {
 										';
                                     }
                                     ?>
-
                                 </ul>
                             </div>
                         </div>
