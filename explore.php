@@ -207,11 +207,6 @@ if (!isset($_GET['category'])) {
 	</header>
 
 	<footer>
-		<ul class="list-footer">
-			<li><a href="user_home.php">Home</a></li>
-			<li><a href="explore.php">Explore</a></li>
-			<li><a href="about.php">About Us</a></li>
-		</ul>
 		<div class="social-media">
 			<a href="#"><i class="fab fa-instagram"></i></a>
 			<a href="#"><i class="fab fa-twitter"></i></a>
