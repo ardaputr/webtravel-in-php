@@ -3,8 +3,8 @@ session_start();
 include('config/config.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
-	// header('location: login.php');
-	// exit;
+	header('location: login.php');
+	exit;
 }
 ?>
 

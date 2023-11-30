@@ -3,8 +3,8 @@ session_start();
 include('config/config.php');
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] === false) {
-	// header('location: login.php');
-	// exit;
+	header('location: login.php');
+	exit;
 }
 if (!isset($_GET['category'])) {
 	$query = mysqli_query($mysql_db, "SELECT * FROM destination");
@@ -86,7 +86,7 @@ if (!isset($_GET['category'])) {
 							<a class="nav-link" href="user_home.php" style="color: #FFFFFF;" id="hover">Home</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#" style="color: #FFFFFF;" id="hover">Explore</a>
+							<a class="nav-link" href="explore.php" style="color: #FFFFFF;" id="hover">Explore</a>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="about.php" style="color: #FFFFFF;" id="hover">About Us</a>
