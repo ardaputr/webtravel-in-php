@@ -24,93 +24,50 @@ if (!isset($_GET['category'])) {
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<style>
-		h1 {
-			text-align: center;
-			color: #ffffff;
-		}
-
-		.row {
-			display: flex;
-			flex-wrap: wrap;
-			max-width: 1170px;
-			margin: auto;
-		}
-
-		ul {
-			list-style: none;
-		}
-
-		.footer {
-			background-image: linear-gradient(#22577a, #38a3a5);
-			padding: 70px 0;
-			position: relative;
-			bottom: 0;
+		footer {
 			width: 100%;
-		}
-
-		.footer-col {
-			width: 25%;
-			padding: 0 15px;
-		}
-
-		.footer-col h4 {
-			font-size: 18px;
-			color: #ffffff;
-			text-transform: capitalize;
-			margin-bottom: 35px;
-			font-weight: 500;
-			position: relative;
-		}
-
-
-		.footer-col h4::before {
-			content: "";
-			position: absolute;
-			left: 0;
-			bottom: -10;
-			background-color: #e91e63;
-			height: 2px;
-			box-sizing: border-box;
-			width: 50px;
-		}
-
-		.footer-col ul li:not(:last-child) {
-			margin-bottom: 10px;
-		}
-
-		.footer-col ul li a {
-			font-size: 16px;
-			text-transform: capitalize;
-			color: #ffffff;
-			text-decoration: none;
-			font-weight: 300;
-			color: #ffffff;
-			display: block;
-			transition: all 0.3s ease;
-		}
-
-		.footer-col ul li a:hover {
-			color: #020202;
-			padding-left: 8px;
-		}
-
-		.footer-col .social-links a {
-			display: inline-block;
-			height: 40px;
-			width: 40px;
-			background-color: rgba(255, 255, 255, 0.2);
-			margin: 0 10px 10px 0;
+			bottom: 0;
+			background: linear-gradient(to right, #0074cc, #00cc6a);
+			display: flex;
+			align-items: center;
+			flex-direction: column;
 			text-align: center;
-			line-height: 40px;
-			border-radius: 50%;
-			color: #ffffff;
-			transition: all 0.5s ease;
+			color: #fff;
+			padding: 20px;
 		}
 
-		.footer-col .social-links a:hover {
-			color: #24262b;
-			background-color: #ffffff;
+		.list-footer {
+			margin: 10px auto;
+			display: flex;
+			list-style-type: none;
+		}
+
+		.list-footer li a {
+			text-decoration: none;
+			color: #fff;
+			font-size: 20px;
+			font-weight: bold;
+			padding: 10px;
+		}
+
+		.list-footer li a:hover {
+			color: var(--mycolor);
+		}
+
+		.social-media {
+			margin: 10px auto;
+		}
+
+		.social-media i {
+			padding: 10px;
+			font-size: 25px;
+			color: #fff;
+		}
+
+		.social-media i:hover {
+			color: rgb(2, 255, 171);
 		}
 	</style>
 </head>
@@ -242,48 +199,21 @@ if (!isset($_GET['category'])) {
 			</center>
 		</section>
 	</header>
-	<div class="footer">
-		<div class="row">
-			<div class="footer-col">
-				<h4>Boole</h4>
-				<div class="social-links">
-					<!-- <a href="#"><i class="fab fa-facebook"></i></a>
-					<a href="#"><i class="fab fa-twitter"></i></a>
-					<a href="#"><i class="fab fa-instagram"></i></a>
-					<a href="#"><i class="fab fa-linkedin-in"></i></a> -->
-				</div>
-			</div>
-			<div class="footer-col">
-				<h4>Home</h4>
-				<ul>
-					<li><a href="explore.php">Explore</a></li>
-				</ul>
-			</div>
-			<div class="footer-col">
-				<h4>Explore</h4>
-				<ul>
-					<li>
-						<a class="nav-link" href="explore.php?type=Beach" style="color: #ffffff;" id="hover">Beach</a>
-					</li>
-					<li>
-						<a class="nav-link" href="explore.php?type=Culinary" style="color: #ffffff;" id="hover">Culinary</a>
-					</li>
-					<li>
-						<a class="nav-link" href="explore.php?type=Culture" style="color: #ffffff;" id="hover">Culture</a>
-					</li>
-					<li>
-						<a class="nav-link" href="explore.php?type=Nature" style="color: #ffffff;" id="hover">Nature</a>
-					</li>
-				</ul>
-			</div>
-			<div class="footer-col">
-				<h4>About Us</h4>
-				<ul>
-					<li><a href="#">rrrr</a></li>
-				</ul>
-			</div>
+	<footer>
+		<ul class="list-footer">
+			<li><a href="user_home.php">Home</a></li>
+			<li><a href="explore.php">Explore</a></li>
+			<li><a href="about.php">About Us</a></li>
+		</ul>
+		<div class="social-media">
+			<a href="#"><i class="fab fa-instagram"></i></a>
+			<a href="#"><i class="fab fa-twitter"></i></a>
+			<a href="#"><i class="fab fa-linkedin"></i></a>
+			<a href="#"><i class="fab fa-facebook"></i></a>
+			<a href="#"><i class="fab fa-youtube"></i></a>
 		</div>
-	</div>
+		<p class="copyrights">&copy; 2023 Boole</p>
+	</footer>
 	<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

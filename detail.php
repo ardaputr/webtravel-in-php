@@ -26,6 +26,8 @@ if (!$destination) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Destination Details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
     <style>
         #hover {
             position: relative;
@@ -54,6 +56,50 @@ if (!$destination) {
         #hover:hover::after {
             transform: scaleX(1);
             transform-origin: left;
+        }
+
+        footer {
+            width: 100%;
+            bottom: 0;
+            background: linear-gradient(to right, #0074cc, #00cc6a);
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .list-footer {
+            margin: 10px auto;
+            display: flex;
+            list-style-type: none;
+        }
+
+        .list-footer li a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .list-footer li a:hover {
+            color: var(--mycolor);
+        }
+
+        .social-media {
+            margin: 10px auto;
+        }
+
+        .social-media i {
+            padding: 10px;
+            font-size: 25px;
+            color: #fff;
+        }
+
+        .social-media i:hover {
+            color: rgb(2, 255, 171);
         }
     </style>
 </head>
@@ -157,6 +203,21 @@ if (!$destination) {
                 </div>
             </section>
     </header>
+    <footer>
+        <ul class="list-footer">
+            <li><a href="user_home.php">Home</a></li>
+            <li><a href="explore.php">Explore</a></li>
+            <li><a href="about.php">About Us</a></li>
+        </ul>
+        <div class="social-media">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <p class="copyrights">&copy; 2023 Boole</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-eUqfzAlFQr1u1KZZ2fKWEeDjR5Fa1l9ajRvABoIXiSAB7DQp6OAp3bI5pG5KkrD" crossorigin="anonymous"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 </body>
