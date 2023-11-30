@@ -163,7 +163,7 @@ if (!isset($_GET['category'])) {
 				<div class="container" style="padding-top:50px; padding-bottom:50px;">
 					<div class="row">
 						<div class="col">
-							<div class="card" style="width: 18rem;">
+							<div class="kartu" style="width: 18rem;">
 								<img src="image/Member/Arda.jpg" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">Waramatja Yuda Putra</h5>
@@ -174,7 +174,7 @@ if (!isset($_GET['category'])) {
 							</div>
 						</div>
 						<div class="col">
-							<div class="card" style="width: 18rem;">
+							<div class="kartu" style="width: 18rem;">
 								<img src="image/Member/Satria.jpeg" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">Othman Satria Nirwasita</h5>
@@ -185,7 +185,7 @@ if (!isset($_GET['category'])) {
 							</div>
 						</div>
 						<div class="col">
-							<div class="card" style="width: 18rem;">
+							<div class="kartu" style="width: 18rem;">
 								<img src="image/Member/Nolan.jpeg" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">Nolan Tabina</h5>
@@ -201,11 +201,6 @@ if (!isset($_GET['category'])) {
 		</section>
 	</header>
 	<footer>
-		<ul class="list-footer">
-			<li><a href="user_home.php">Home</a></li>
-			<li><a href="explore.php">Explore</a></li>
-			<li><a href="about.php">About Us</a></li>
-		</ul>
 		<div class="social-media">
 			<a href="#"><i class="fab fa-instagram"></i></a>
 			<a href="#"><i class="fab fa-twitter"></i></a>

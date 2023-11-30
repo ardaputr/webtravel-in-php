@@ -90,11 +90,11 @@
     transition: transform 0.5s;
     transform: scaleX(0);
     transform-origin: right;
-    background-color: #0174BE;
+    background-color: linear-gradient(to right, #0074cc, #00cc6a);
 }
     
 #hover:hover{
-    color:#7752FE;
+    color:linear-gradient(to right, #0074cc, #00cc6a);
 }
     
 #hover:hover::after{

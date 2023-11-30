@@ -246,6 +246,13 @@ if (!isset($_GET['category'])) {
 				</div>
 			</section>
 		</section>
+		<section style="position: relative; height: 300px; overflow: hidden; border-radius:40px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; margin: 0px 60px 60px 60px; padding: auto;">
+			<h2 style="color: black; font-family: 'Montserrat', sans-serif; font-weight:600;">
+				Prepare Yourself & Let's Explore <br> The Beauty Of The World
+			</h2> <br>
+			<a href="explore.php" class="kartu" style=" background: linear-gradient(to right, #0074cc, #00cc6a); color: white; width: 200px; text-decoration: none; padding: 10px; border-radius: 50px;">Get Started</a>
+		</section>
+
 	</header>
 
 	<footer>
