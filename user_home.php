@@ -231,7 +231,7 @@ if (!isset($_GET['category'])) {
 									<a style="text-decoration: none; color: black;" href="detail2.php?destination_id=<?php echo $row['id']; ?>">
 										<img src="<?php echo $imagePath; ?>" class="card-img-top" alt="Product Image" style="width: 100%; height: 200px;">
 										<div class="card-body">
-											<h5 class="card-title"><?php echo $row['place']; ?></h5>
+											<h5 style="font-family: 'Montserrat', sans-serif; font-weight:600;"><?php echo $row['place']; ?></h5>
 											<p class="card-text">
 												<iconify-icon icon="carbon:location"></iconify-icon>
 												<?php echo $row['address']; ?>
